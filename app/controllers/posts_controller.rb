@@ -10,6 +10,11 @@ class PostsController < ApplicationController
     redirect_to :root
   end
 
+  def destroy
+    Post.destroy params[:id]
+    redirect_to :root
+  end
+
   private
 
   def post_params

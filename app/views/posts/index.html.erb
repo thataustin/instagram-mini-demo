@@ -1,12 +1,25 @@
-<h1>Welcome#index</h1>
+<h1>Instagram Mini</h1>
 
 <%= form_for @post do |f| %>
-  <%= f.text_field :title %>
-  <%= f.file_field :image %>
+  <%= f.text_field :title, class: 'form-control' %>
+  <%= f.file_field :image, class: 'form-control' %>
+  <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+    Save
+  <% end %>
 <% end %> 
 
 
-<% @posts.each do |post| %>
-   <%= post.title %>
-   <%= image_tag "data:image/jpeg;base64,#{post.image}" %>
-<%end %>
+<div class="container">
+    <% @posts.each do |post| %>
+    <div class="post-container">
+      <div>
+         <%= post.title %>
+       </div>
+       <div>
+         <%= image_tag "data:image/jpeg;base64,#{post.image}" %>
+         <%= button_to "delete", {:controller => :posts,
+            :action => 'destroy', :id => post.id }, :method => :delete %>
+      </div>
+    </div>     
+    <%end %>
+</div>
